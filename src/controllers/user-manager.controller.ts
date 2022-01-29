@@ -12,16 +12,16 @@ export class UserManagerController {
     }
 
     @Get('list')
-    searchUser(){
+    listUser(){
         return this.user.listUser();
     }
     
-    @Put('id')
+    @Put(':id')
     modifyUser(@Param('id') idUser: number, @Body() body: any){
         return this.modifyUser(idUser,body);
     }
 
-    @Delete('id')
+    @Delete(':id')
     deleteUser(@Param('id') idUser: number){
         return this.user.deleteUser(idUser);
     }

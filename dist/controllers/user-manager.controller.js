@@ -22,7 +22,7 @@ let UserManagerController = class UserManagerController {
     createUser(body) {
         return this.user.createUser(body);
     }
-    searchUser() {
+    listUser() {
         return this.user.listUser();
     }
     modifyUser(idUser, body) {
@@ -44,9 +44,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], UserManagerController.prototype, "searchUser", null);
+], UserManagerController.prototype, "listUser", null);
 __decorate([
-    (0, common_1.Put)('id'),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserManagerController.prototype, "modifyUser", null);
 __decorate([
-    (0, common_1.Delete)('id'),
+    (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

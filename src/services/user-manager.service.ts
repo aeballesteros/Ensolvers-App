@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from 'src/entities/users.entity';
-import { Tasks } from 'src/entities/tasks.entity';
 
 @Injectable()
 export class UserManagerService {
@@ -11,8 +10,9 @@ export class UserManagerService {
         @InjectRepository(Users) private userRepository: Repository<Users>,
     ){}
     
-    createUser(body :any) : string{
-        if(this.userRepository.findOne(body.idTask)){
+    async createUser(body :any){
+        const aux = await this.userRepository.findOne(body.idTask)
+        if(aux){
             return "The User id already exists in the database.";
         }else{
             const newUser = this.userRepository.create(body);

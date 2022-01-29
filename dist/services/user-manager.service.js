@@ -21,8 +21,9 @@ let UserManagerService = class UserManagerService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    createUser(body) {
-        if (this.userRepository.findOne(body.idTask)) {
+    async createUser(body) {
+        const aux = await this.userRepository.findOne(body.idTask);
+        if (aux) {
             return "The User id already exists in the database.";
         }
         else {

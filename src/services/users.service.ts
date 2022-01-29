@@ -10,8 +10,9 @@ export class UsersService {
     ){}
     
 
-    createTask(body :any) : string{
-        if(this.taskRepository.findOne(body.idTask)){
+    async createTask(body :any) {
+        const aux = await this.taskRepository.findOne(body.idTask)
+        if(aux){
             return "The task id already exists in the database.";
         }else{
             const newTask = this.taskRepository.create(body);

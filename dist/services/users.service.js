@@ -21,8 +21,9 @@ let UsersService = class UsersService {
     constructor(taskRepository) {
         this.taskRepository = taskRepository;
     }
-    createTask(body) {
-        if (this.taskRepository.findOne(body.idTask)) {
+    async createTask(body) {
+        const aux = await this.taskRepository.findOne(body.idTask);
+        if (aux) {
             return "The task id already exists in the database.";
         }
         else {
