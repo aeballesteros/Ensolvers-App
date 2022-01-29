@@ -1,25 +1,34 @@
-import { Injectable,Param} from '@nestjs/common';
-import { UsersService } from './users.service';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Users } from 'src/entities/users.entity';
+import { Tasks } from 'src/entities/tasks.entity';
 
 @Injectable()
 export class UserManagerService {
     
-    constructor(User : UsersService){} 
+    constructor(
+        @InjectRepository(Users) private userRepository: Repository<Users>,
+    ){}
     
-    create(User): string{
-        return "Usuario creado con exito"
+    createUser(body :any) : string{
+        const newTask = this.userRepository.create(body);
+        return "Task created successfully";
     }
 
-    modify(User): string {
-        return "Usuario modificado con exito"
-    } 
-    
-    search(){
-
+    listUser(){
+        return this.userRepository.find();
     }
 
-    delete(@Param('id') idUser : number) : string{
-        return "Usuario borrado con exito"
+    async modifyUser(idTask: number,body: any) {
+        const aux = await this.userRepository.findOne(idTask);
+        this.userRepository.merge(aux,body);
+        return "Task modified successfully";
+    }
+
+    async deleteUser(idTask : number) {
+        this.userRepository.delete(idTask);
+        return "Task deleted successfully";
     }
 
 }

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn} from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm'
+import { Tasks } from './tasks.entity';
 
 @Entity()
 export class Users{
@@ -16,9 +17,9 @@ export class Users{
     password: string;
 
     @Column()
-    status: string;
-
-    @Column()
     rol: string;
+
+    @OneToMany(type => Tasks, Tasks => Tasks.idTask)
+    Tasks: Tasks[];
     
 }

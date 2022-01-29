@@ -21,7 +21,7 @@ export class UsersService {
         return this.taskRepository.find();
     }
 
-    async completeTask(idTask: number,body: any) {
+    async modifyTask(idTask: number,body: any) {
         const aux = await this.taskRepository.findOne(idTask);
         this.taskRepository.merge(aux,body);
         return "Task modified successfully";

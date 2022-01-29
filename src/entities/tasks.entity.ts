@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn} from 'typeorm'
+import { UsersController } from 'src/controllers/users.controller';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm'
+import { Users } from './users.entity';
 
 @Entity()
 export class Tasks{
@@ -12,4 +14,6 @@ export class Tasks{
     @Column({default: "P"})
     status: string;
     
+    @ManyToOne(type => Users, Users => Users.idUser)
+    Users: Users[];
 }
