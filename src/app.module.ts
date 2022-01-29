@@ -13,11 +13,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'postgres',
       host: 'localhost',
       port: '5432',
-      username: 'root',
+      username: 'postgres',
+      password: '',
+      database: 'mydb',
+      entities: ['disy/**/*.entity{.ts,.js}'],
+      synchronize: false,
+      retryDelay: 2000,
+      retryAttempts: 10,
     })
-
-
-
   ],
   controllers: [AppController, UsersController, TasksController],
   providers: [AppService, UsersService, TasksService],
