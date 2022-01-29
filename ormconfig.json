@@ -5,7 +5,7 @@
     "username": "newuser",
     "password": "password",
     "database": "mydb",
-    "entities": ["src/database/migrations/*.ts"],
+    "entities": ["src/**/*.entity.ts"],
     "synchronize": false,
     "migrationTableName": "migrations",
     "migrations": ["src/database/migrations/*.ts"],

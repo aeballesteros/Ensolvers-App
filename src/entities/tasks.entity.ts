@@ -1,4 +1,3 @@
-import { UsersController } from 'src/controllers/users.controller';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne} from 'typeorm'
 import { Users } from './users.entity';
 
