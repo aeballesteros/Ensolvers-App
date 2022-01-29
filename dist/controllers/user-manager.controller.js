@@ -20,27 +20,27 @@ let UserManagerController = class UserManagerController {
         this.user = user;
     }
     createUser(body) {
-        this.user.createUser(body);
+        return this.user.createUser(body);
     }
     searchUser() {
-        this.user.listUser();
+        return this.user.listUser();
     }
     modifyUser(idUser, body) {
-        this.modifyUser(idUser, body);
+        return this.modifyUser(idUser, body);
     }
     deleteUser(idUser) {
-        this.user.deleteUser(idUser);
+        return this.user.deleteUser(idUser);
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UserManagerController.prototype, "createUser", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('list'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)

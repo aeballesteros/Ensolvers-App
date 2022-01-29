@@ -22,20 +22,37 @@ let UserManagerService = class UserManagerService {
         this.userRepository = userRepository;
     }
     createUser(body) {
-        const newTask = this.userRepository.create(body);
-        return "Task created successfully";
+        if (this.userRepository.findOne(body.idTask)) {
+            return "The User id already exists in the database.";
+        }
+        else {
+            const newUser = this.userRepository.create(body);
+            this.userRepository.save(newUser);
+            return "User created successfully.";
+        }
     }
     listUser() {
         return this.userRepository.find();
     }
-    async modifyUser(idTask, body) {
-        const aux = await this.userRepository.findOne(idTask);
-        this.userRepository.merge(aux, body);
-        return "Task modified successfully";
+    async modifyUser(idUser, body) {
+        if (this.userRepository.findOne(idUser)) {
+            const aux = await this.userRepository.findOne(idUser);
+            this.userRepository.merge(aux, body);
+            this.userRepository.save(aux);
+            return "User modified successfully";
+        }
+        else {
+            return "The user you are trying to modify does not exist.";
+        }
     }
-    async deleteUser(idTask) {
-        this.userRepository.delete(idTask);
-        return "Task deleted successfully";
+    async deleteUser(idUser) {
+        if (this.userRepository.findOne(idUser)) {
+            this.userRepository.delete(idUser);
+            return "User deleted successfully";
+        }
+        else {
+            return "The user you are trying to delete does not exist.";
+        }
     }
 };
 UserManagerService = __decorate([

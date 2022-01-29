@@ -6,23 +6,23 @@ export class UserManagerController {
 
     constructor(private user : UserManagerService){}
     
-    @Post()
+    @Post('create')
     createUser(@Body() body : any){
-        this.user.createUser(body);
+        return this.user.createUser(body);
     }
 
-    @Get()
+    @Get('list')
     searchUser(){
-        this.user.listUser();
+        return this.user.listUser();
     }
     
     @Put('id')
     modifyUser(@Param('id') idUser: number, @Body() body: any){
-        this.modifyUser(idUser,body);
+        return this.modifyUser(idUser,body);
     }
 
     @Delete('id')
     deleteUser(@Param('id') idUser: number){
-        this.user.deleteUser(idUser);
+        return this.user.deleteUser(idUser);
     }
 }

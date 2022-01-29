@@ -5,6 +5,6 @@ export declare class UserManagerService {
     constructor(userRepository: Repository<Users>);
     createUser(body: any): string;
     listUser(): Promise<Users[]>;
-    modifyUser(idTask: number, body: any): Promise<string>;
-    deleteUser(idTask: number): Promise<string>;
+    modifyUser(idUser: number, body: any): Promise<"User modified successfully" | "The user you are trying to modify does not exist.">;
+    deleteUser(idUser: number): Promise<"User deleted successfully" | "The user you are trying to delete does not exist.">;
 }
