@@ -20,33 +20,33 @@ let UsersController = class UsersController {
         this.userService = userService;
     }
     createTask(body) {
-        this.userService.createTask(body);
+        return this.userService.createTask(body);
     }
     listTasks() {
-        this.userService.listTask();
+        return this.userService.listTask();
     }
     modifyTask(idTask, body) {
-        this.userService.modifyTask(idTask, body);
+        return this.userService.modifyTask(idTask, body);
     }
     deleteTask(idTask) {
-        this.userService.deleteTask(idTask);
+        return this.userService.deleteTask(idTask);
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "createTask", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('list'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "listTasks", null);
 __decorate([
-    (0, common_1.Put)('id'),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "modifyTask", null);
 __decorate([
-    (0, common_1.Delete)('id'),
+    (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

@@ -6,24 +6,24 @@ export class UsersController {
 
     constructor(private userService : UsersService){}
     
-    @Post()
+    @Post('create')
     createTask(@Body() body : any){
-        this.userService.createTask(body);
+        return this.userService.createTask(body);
     }
 
-    @Get()
+    @Get('list')
     listTasks(){
-        this.userService.listTask();
+        return this.userService.listTask();
     }
     
-    @Put('id')
+    @Put(':id')
     modifyTask(@Param('id') idTask: number, @Body() body: any){
-        this.userService.modifyTask(idTask,body);
+        return this.userService.modifyTask(idTask,body);
     }
 
-    @Delete('id')
+    @Delete(':id')
     deleteTask(@Param('id') idTask: number){
-        this.userService.deleteTask(idTask);
+        return this.userService.deleteTask(idTask);
     }
 
 }

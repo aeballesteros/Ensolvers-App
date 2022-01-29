@@ -11,8 +11,13 @@ export class UsersService {
     
 
     createTask(body :any) : string{
-        const newTask = this.taskRepository.create(body);
-        return "Task created successfully";
+        if(this.taskRepository.findOne(body.idTask)){
+            return "The task id already exists in the database.";
+        }else{
+            const newTask = this.taskRepository.create(body);
+            this.taskRepository.save(newTask)
+            return "Task created successfully.";
+        }
     }
 
     listTask(){
@@ -20,14 +25,23 @@ export class UsersService {
     }
 
     async modifyTask(idTask: number,body: any) {
-        const aux = await this.taskRepository.findOne(idTask);
-        this.taskRepository.merge(aux,body);
-        return "Task modified successfully";
+        if(this.taskRepository.findOne(idTask)){
+            const aux = await this.taskRepository.findOne(idTask);
+            this.taskRepository.merge(aux,body);
+            this.taskRepository.save(aux);
+            return "Task modified successfully";
+        }else{
+            return "The task you are trying to modify does not exist.";
+        }
     }
 
     async deleteTask(idTask : number) {
-        this.taskRepository.delete(idTask);
-        return "Task deleted successfully";
+        if(this.taskRepository.findOne(idTask)){
+            this.taskRepository.delete(idTask);
+            return "Task deleted successfully";
+        }else{
+            return "The task you are trying to delete does not exist.";
+        }
     }
 
 }

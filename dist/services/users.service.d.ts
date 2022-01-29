@@ -5,6 +5,6 @@ export declare class UsersService {
     constructor(taskRepository: Repository<Tasks>);
     createTask(body: any): string;
     listTask(): Promise<Tasks[]>;
-    modifyTask(idTask: number, body: any): Promise<string>;
-    deleteTask(idTask: number): Promise<string>;
+    modifyTask(idTask: number, body: any): Promise<"Task modified successfully" | "The task you are trying to modify does not exist.">;
+    deleteTask(idTask: number): Promise<"Task deleted successfully" | "The task you are trying to delete does not exist.">;
 }
