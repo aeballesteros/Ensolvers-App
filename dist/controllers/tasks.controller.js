@@ -19,18 +19,29 @@ let TasksController = class TasksController {
     constructor(task) {
         this.task = task;
     }
-    modifyTask(idTask, body) {
+    completeTask(idTask, body) {
+        this.task.completeTask(idTask, body);
+    }
+    pendingTask(idTask, body) {
         this.task.completeTask(idTask, body);
     }
 };
 __decorate([
-    (0, common_1.Put)('id'),
+    (0, common_1.Put)('complete/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", void 0)
-], TasksController.prototype, "modifyTask", null);
+], TasksController.prototype, "completeTask", null);
+__decorate([
+    (0, common_1.Put)('pending/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:returntype", void 0)
+], TasksController.prototype, "pendingTask", null);
 TasksController = __decorate([
     (0, common_1.Controller)('tasks'),
     __metadata("design:paramtypes", [tasks_service_1.TasksService])

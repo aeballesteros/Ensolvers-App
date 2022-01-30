@@ -7,7 +7,7 @@ fetch(API_URL)
     const template = post.map(user=>`<li>
                                             <div class="col-md-12">
                                                 <div class="col-md-2">
-                                                    <input type="checkbox">
+                                                    <input id="status" type="checkbox" onClick="Change(this)">
                                                 </div>
                                                 <div id="idTask" class="col-md-1">
                                                     ${user.id}
@@ -20,7 +20,7 @@ fetch(API_URL)
                                                     <input type="button" value="Edit" onClick="Edit()">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <input type="button" value="Delete" onClick="Deleted()">
+                                                    <input type="button" value="Delete" onClick="Delete()">
                                                 </div>
                                             </div>
                                         </li>`);
@@ -62,7 +62,7 @@ function Edit(){
 						    <div class="col-md-12" >
 				  			    <div class="content-box-large">
 								    <h5><a>Edit Task</a></h5>
-								    <input class="col-md-12" type="text">
+								    <input id="newName" class="col-md-12" type="text">
 								    <input type="button" value="Save" onClick="Save()">
 								    <input type="button" value="Cancel" onClick="Cancel()">
 				  			    </div>
@@ -92,17 +92,88 @@ function Delete(){
 }
 
 function Save(){
-    //agregar conexion a API
+    
+    const element = document.getElementById("newName").value;
+  
+    const task={
+        name: element,
+    }
+    const options={
+        method: 'PUT',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(task),
+    };
+    fetch(`localhost:3000/users/${element}`,options)
+    .then(data=>{
+        if(!data.ok){
+            throw Error(data.status);
+        }
+        return data.json();
+    }).then(task=>{
+        console.log(task);
+    }).catch(e=>{
+        console.log(e);
+    });
+
+    document.getElementById("newName").value="";
+    const container=document.querySelector('#edit');
+    container.innerHTML=``;
+}
+
+function Cancel(){
     const container=document.querySelector('#edit')
     container.innerHTML=``;
 }
 
-        function Cancel(){
-            const container=document.querySelector('#edit')
-            container.innerHTML=``;
+function Change(checkbox){
+    if(checkbox.checked){
+        const element = document.getElementById("idTask").value;
+        const task={
+            status: "C",
         }
-
-/*
-		req.addEventListener("load",onRequestHandler);
-		req.open("GET",API_URL+"/users");
-		req.send();*/
+        const options={
+        method: 'PUT',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(task),
+        };
+        fetch(`localhost:3000/tasks/${element}`,options)
+        .then(data=>{
+            if(!data.ok){
+                throw Error(data.status);
+            }
+            return data.json();
+        }).then(task=>{
+            console.log(task);
+        }).catch(e=>{
+        console.log(e);
+    });
+    }else{
+        const element = document.getElementById("idTask").value;
+        const task={
+            status: "P",
+        }
+        const options={
+        method: 'PUT',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(task),
+        };
+        fetch(`localhost:3000/tasks/${element}`,options)
+        .then(data=>{
+            if(!data.ok){
+                throw Error(data.status);
+            }
+            return data.json();
+        }).then(task=>{
+            console.log(task);
+        }).catch(e=>{
+        console.log(e);
+    });
+    }
+}
+        

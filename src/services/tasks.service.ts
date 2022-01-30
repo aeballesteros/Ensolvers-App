@@ -15,4 +15,11 @@ export class TasksService {
         return "Task Complete"
     }
 
+    async pendingTask(idTask: number,body: any){
+        const aux = await this.taskRepository.findOne(idTask);
+        aux.status="P";
+        this.taskRepository.save(aux);
+        return "Task pending"
+    }
+
 }

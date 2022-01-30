@@ -27,6 +27,12 @@ let TasksService = class TasksService {
         this.taskRepository.save(aux);
         return "Task Complete";
     }
+    async pendingTask(idTask, body) {
+        const aux = await this.taskRepository.findOne(idTask);
+        aux.status = "P";
+        this.taskRepository.save(aux);
+        return "Task pending";
+    }
 };
 TasksService = __decorate([
     (0, common_1.Injectable)(),

@@ -6,8 +6,14 @@ export class TasksController {
     
     constructor(private task : TasksService){}
 
-    @Put('id')
-    modifyTask(@Param('id') idTask: number, @Body() body: any){
+    @Put('complete/:id')
+    completeTask(@Param('id') idTask: number, @Body() body: any){
         this.task.completeTask(idTask,body);
     }
+
+    @Put('pending/:id')
+    pendingTask(@Param('id') idTask: number, @Body() body: any){
+        this.task.completeTask(idTask,body);
+    }
+}
 }
