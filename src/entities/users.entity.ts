@@ -7,16 +7,16 @@ export class Users{
     @PrimaryGeneratedColumn()
     idUser: number;
     
-    @Column()
+    @Column({nullable: false})
     name: string;
 
-    @Column()
+    @Column({nullable: false})
     email: string;
     
-    @Column()
+    @Column({nullable: false})
     password: string;
 
-    @Column()
+    @Column({nullable: false})
     rol: string;
 
     @OneToMany(type => Tasks, Tasks => Tasks.idTask)

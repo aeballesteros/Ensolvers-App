@@ -19,11 +19,11 @@ __decorate([
     __metadata("design:type", Number)
 ], Tasks.prototype, "idTask", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
 ], Tasks.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: "P" }),
+    (0, typeorm_1.Column)({ nullable: false, default: "P" }),
     __metadata("design:type", String)
 ], Tasks.prototype, "status", void 0);
 __decorate([

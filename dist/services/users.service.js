@@ -22,38 +22,22 @@ let UsersService = class UsersService {
         this.taskRepository = taskRepository;
     }
     async createTask(body) {
-        const aux = await this.taskRepository.findOne(body.idTask);
-        if (aux) {
-            return "The task id already exists in the database.";
-        }
-        else {
-            const newTask = this.taskRepository.create(body);
-            this.taskRepository.save(newTask);
-            return "Task created successfully.";
-        }
+        const newTask = this.taskRepository.create(body);
+        this.taskRepository.save(newTask);
+        return "Task created successfully.";
     }
     listTask() {
         return this.taskRepository.find();
     }
     async modifyTask(idTask, body) {
-        if (this.taskRepository.findOne(idTask)) {
-            const aux = await this.taskRepository.findOne(idTask);
-            this.taskRepository.merge(aux, body);
-            this.taskRepository.save(aux);
-            return "Task modified successfully";
-        }
-        else {
-            return "The task you are trying to modify does not exist.";
-        }
+        const aux = await this.taskRepository.findOne(idTask);
+        this.taskRepository.merge(aux, body);
+        this.taskRepository.save(aux);
+        return "Task modified successfully";
     }
     async deleteTask(idTask) {
-        if (this.taskRepository.findOne(idTask)) {
-            this.taskRepository.delete(idTask);
-            return "Task deleted successfully";
-        }
-        else {
-            return "The task you are trying to delete does not exist.";
-        }
+        this.taskRepository.delete(idTask);
+        return "Task deleted successfully";
     }
 };
 UsersService = __decorate([

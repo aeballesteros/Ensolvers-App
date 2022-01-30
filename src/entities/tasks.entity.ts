@@ -7,10 +7,10 @@ export class Tasks{
     @PrimaryGeneratedColumn()
     idTask: number;
     
-    @Column()
+    @Column({nullable: false})
     name: string;
 
-    @Column({default: "P"})
+    @Column({nullable: false,default: "P"})
     status: string;
     
     @ManyToOne(type => Users, Users => Users.idUser)
