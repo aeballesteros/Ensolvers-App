@@ -16,4 +16,3 @@ export class TasksController {
         this.task.completeTask(idTask,body);
     }
 }
-}

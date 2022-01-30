@@ -1,4 +1,4 @@
-const API_URL='http://jsonplaceholder.typicode.com/users';
+const API_URL=`localhost:3000/list`;
 fetch(API_URL)
 .then(data=>{return data.json();
 })
