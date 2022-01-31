@@ -5,7 +5,7 @@ sudo apt-get upgrade
 sudo apt-get install mysql-server
 sudo service mysql start
 sudo mysql -uroot -p  -e "CREATE DATABASE mydb";
-sudo mysql -uroot -p  -e "CREATE USER 'newuser'@'localhost' IDENTIFIED BY '123456'";
+sudo mysql -uroot -p  -e "CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password'";
 sudo mysql -uroot -p  -e "GRANT ALL PRIVILEGES ON *.* TO 'prueba'@'localhost'";
 sudo mysql -uroot -p  -e "FLUSH PRIVILEGES";
 sudo apt-get install node
