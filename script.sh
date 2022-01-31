@@ -11,6 +11,9 @@ sudo mysql -uroot -p  -e "FLUSH PRIVILEGES";
 sudo apt-get install node
 sudo apt-get install nodejs
 sudo apt-get install npm
+sudo npm cache clean --force
+sudo npm install -g n
+sudo n stable
 sudo npm i -g @nestjs/cli
 sudo npm install --save @nestjs/typeorm typeorm mysql2
 sudo npm run typeorm -- migration:generate -init
