@@ -1,6 +1,6 @@
 # IMPORTANT
 
-This repository only has backend development. The frontend development is located in the following repository: [https://github.com/aeballesteros/App.git] (https://github.com/aeballesteros/App.git)
+This repository only has backend development. The frontend development is located in the following repository: [https://github.com/aeballesteros/Ensolvers-App-Frontend.git]
 
 # Description
 
